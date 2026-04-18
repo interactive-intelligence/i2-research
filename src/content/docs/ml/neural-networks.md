@@ -23,14 +23,20 @@ The **depth** of a network (number of hidden layers) and **width** (neurons per 
 
 Non-linear activation functions are critical — without them, a multi-layer network would collapse to a single linear transformation. Common choices include:
 
-- **ReLU** (Rectified Linear Unit) — `max(0, x)`. Simple, computationally efficient, and avoids the vanishing gradient problem for positive values.
-- **Sigmoid** — Maps inputs to (0, 1). Historically important but prone to vanishing gradients.
-- **Tanh** — Maps inputs to (-1, 1). Zero-centered but shares vanishing gradient issues with sigmoid.
+- **ReLU** (Rectified Linear Unit) — $\text{ReLU}(x) = \max(0, x)$. Simple, computationally efficient, and avoids the vanishing gradient problem for positive values.
+- **Sigmoid** — $\sigma(x) = \frac{1}{1 + e^{-x}}$, mapping inputs to $(0, 1)$. Historically important but prone to vanishing gradients.
+- **Tanh** — $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$, mapping inputs to $(-1, 1)$. Zero-centered but shares vanishing gradient issues with sigmoid.
 - **GELU / SiLU** — Smooth approximations used in modern architectures like transformers.
 
 ## Training with Backpropagation
 
-Neural networks are trained using **gradient descent**: iteratively adjusting weights to minimize a loss function. The key algorithm is **backpropagation**, which efficiently computes the gradient of the loss with respect to each weight by applying the chain rule from the output layer back to the input.
+Neural networks are trained using **gradient descent**: iteratively adjusting weights to minimize a loss function. The key algorithm is **backpropagation**, which efficiently computes the gradient of the loss with respect to each weight by applying the chain rule from the output layer back to the input. For a neuron with output $a^{(l)} = f\!\left(\mathbf{w}^{(l)} \cdot \mathbf{a}^{(l-1)} + b^{(l)}\right)$, the gradient flows back as:
+
+$$
+\frac{\partial \mathcal{L}}{\partial \mathbf{w}^{(l)}} = \frac{\partial \mathcal{L}}{\partial a^{(l)}} \cdot f'\!\left(z^{(l)}\right) \cdot \mathbf{a}^{(l-1)}
+$$
+
+where $z^{(l)} = \mathbf{w}^{(l)} \cdot \mathbf{a}^{(l-1)} + b^{(l)}$ is the pre-activation.
 
 Modern training typically uses **stochastic gradient descent (SGD)** or adaptive optimizers like Adam, processing mini-batches of data at each step rather than the full dataset.
 

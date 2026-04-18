@@ -13,9 +13,11 @@ Modern deep learning has driven the development of sophisticated optimization te
 
 The foundational optimization algorithm in ML is **gradient descent**: iteratively updating parameters in the direction that reduces the loss. The update rule is:
 
-**w = w - lr * gradient(L)**
+$$
+\mathbf{w}_{t+1} = \mathbf{w}_t - \eta \nabla_{\mathbf{w}} \mathcal{L}(\mathbf{w}_t)
+$$
 
-where *lr* is the learning rate and *L* is the loss function. In practice, three variants are commonly used:
+where $\eta$ is the learning rate and $\mathcal{L}$ is the loss function. In practice, three variants are commonly used:
 
 - **Batch Gradient Descent** — Computes gradients over the entire dataset. Stable but computationally expensive for large datasets.
 - **Stochastic Gradient Descent (SGD)** — Computes gradients on a single example. Noisy but fast, with the noise sometimes helping escape local minima.
@@ -25,7 +27,13 @@ where *lr* is the learning rate and *L* is the loss function. In practice, three
 
 Modern optimizers adapt the learning rate per-parameter based on gradient history:
 
-- **Adam** — Combines momentum (exponential moving average of gradients) with RMSProp (adaptive per-parameter learning rates). The default choice for many deep learning tasks.
+- **Adam** — Combines momentum (exponential moving average of gradients) with RMSProp (adaptive per-parameter learning rates). The update uses bias-corrected moment estimates $\hat{m}_t$ and $\hat{v}_t$:
+
+$$
+\mathbf{w}_{t+1} = \mathbf{w}_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
+$$
+
+  The default choice for many deep learning tasks.
 - **AdamW** — A variant that decouples weight decay from the adaptive learning rate, improving generalization.
 - **SGD with Momentum** — Adds a velocity term that accumulates gradient direction, accelerating convergence and damping oscillations. Often preferred for CNNs and achieves better final performance with careful tuning.
 
