@@ -1,0 +1,44 @@
+---
+title: Prompt Engineering
+description: Techniques for effectively communicating with and steering large language models.
+sidebar:
+  order: 3
+---
+
+Prompt engineering is the practice of designing inputs to large language models that elicit desired outputs. As LLMs have become more capable, the art and science of crafting effective prompts has emerged as a critical skill for researchers and practitioners alike.
+
+Unlike traditional programming where instructions are explicit and deterministic, prompt engineering involves communicating intent through natural language. The same underlying model can behave as a translator, a code assistant, a creative writer, or an analyst — depending entirely on how it is prompted.
+
+## Core Techniques
+
+### Zero-Shot Prompting
+The simplest approach: directly asking the model to perform a task without providing examples. This works well for straightforward tasks where the model's pre-training provides sufficient context.
+
+### Few-Shot Prompting
+Providing several input-output examples before the actual query. This leverages the model's in-context learning ability to infer the desired pattern and apply it to new inputs.
+
+### Chain-of-Thought (CoT)
+Asking the model to "think step by step" before producing a final answer. This technique significantly improves performance on mathematical, logical, and multi-step reasoning tasks by encouraging the model to decompose complex problems.
+
+### System Prompts and Role-Playing
+Setting a persona or context for the model (e.g., "You are an expert biologist") to steer its responses toward a particular domain, tone, or level of detail.
+
+## Best Practices
+
+- **Be specific** — Vague prompts produce vague answers. Include constraints, desired format, and relevant context.
+- **Iterate** — Treat prompts as code: test, evaluate, and refine them systematically.
+- **Provide structure** — Use delimiters, numbered steps, or templates to organize complex prompts.
+- **Manage context** — Place the most important information at the beginning or end of long prompts, as models attend to these positions most strongly.
+
+## Key Concepts
+
+- **In-Context Learning** — The model's ability to learn from examples provided within the prompt, without any weight updates.
+- **Prompt Sensitivity** — Small changes in wording can lead to significantly different outputs, making robust prompt design important.
+- **Temperature** — A sampling parameter that controls the randomness of model outputs; lower values produce more deterministic responses.
+- **Prompt Injection** — A security concern where adversarial inputs can override or manipulate a model's intended behavior.
+
+## Further Reading
+
+- Wei, J., et al. (2022). "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models." *NeurIPS*.
+- Reynolds, L. & McDonell, K. (2021). "Prompt Programming for Large Language Models: Beyond the Few-Shot Paradigm." *CHI Extended Abstracts*.
+- Anthropic. (2024). "The Prompt Engineering Guide." *docs.anthropic.com*.

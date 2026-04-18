@@ -1,0 +1,135 @@
+/* I2 Research Guide — Custom Theme */
+
+/* Dark mode (default) */
+:root {
+  --sl-color-accent-low: #2a1a52;
+  --sl-color-accent: #cc88ff;
+  --sl-color-accent-high: #ffc2ff;
+  --sl-color-text-accent: #cc88ff;
+
+  /* Slightly purple-tinted dark backgrounds */
+  --sl-color-bg-nav: #1a1225;
+  --sl-color-bg-sidebar: #16101f;
+  --sl-color-bg: #130e1c;
+
+  /* Gray scale with purple undertone */
+  --sl-color-gray-1: #e8dff5;
+  --sl-color-gray-2: #c4b8d9;
+  --sl-color-gray-3: #9688ad;
+  --sl-color-gray-4: #6b5d82;
+  --sl-color-gray-5: #4a3d61;
+  --sl-color-gray-6: #2d2240;
+  --sl-color-hairline-light: #3a2b54;
+}
+
+/* Light mode */
+:root[data-theme="light"] {
+  --sl-color-accent-low: #f0e4ff;
+  --sl-color-accent: #744bc5;
+  --sl-color-accent-high: #503690;
+  --sl-color-text-accent: #744bc5;
+
+  --sl-color-bg-nav: #faf6ff;
+  --sl-color-bg-sidebar: #f5eeff;
+  --sl-color-bg: #ffffff;
+
+  --sl-color-gray-1: #2d2240;
+  --sl-color-gray-2: #4a3d61;
+  --sl-color-gray-3: #6b5d82;
+  --sl-color-gray-4: #9688ad;
+  --sl-color-gray-5: #c4b8d9;
+  --sl-color-gray-6: #f0e4ff;
+  --sl-color-hairline-light: #e0d4f0;
+}
+
+/* Logo sizing */
+.site-title img {
+  height: 2rem;
+}
+
+/* Background circle behind the nav logo icon in light mode */
+:root[data-theme="light"] .site-title img,
+:root[data-theme="light"] header .site-title svg {
+  background: #b7aeed;
+  border-radius: 50%;
+  padding: 0.3rem;
+}
+
+/* Glow on the hero inline SVG logo in light mode */
+:root[data-theme="light"] .hero .hero-html svg {
+  filter: drop-shadow(0 0 20px rgba(116, 75, 197, 0.4))
+    drop-shadow(0 0 20px rgba(116, 75, 197, 0.4));
+}
+
+/* Deep indigo gradient shadow on the hero logo in dark mode */
+:root:not([data-theme="light"]) .hero .hero-html svg {
+  filter: drop-shadow(0 0 12px rgba(67, 20, 150, 0.7))
+    drop-shadow(0 0 30px rgba(49, 10, 120, 0.4))
+    drop-shadow(0 0 60px rgba(30, 5, 80, 0.2));
+}
+
+/* Hero banner styling for splash page */
+.hero {
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(116, 75, 197, 0.15) 0%,
+    transparent 70%
+  );
+}
+
+:root[data-theme="light"] .hero {
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(116, 75, 197, 0.1) 0%,
+    transparent 70%
+  );
+}
+
+/* Remove gap between header and hero gradient */
+[data-template="splash"] .main-frame,
+[data-template="splash"] .main-frame > *,
+.content-panel:has(.hero) {
+  padding-top: 0;
+}
+
+/* Accent border on active sidebar items */
+nav.sidebar a[aria-current="page"] {
+  border-inline-start-color: #cc88ff;
+}
+
+:root[data-theme="light"] nav.sidebar a[aria-current="page"] {
+  border-inline-start-color: #744bc5;
+}
+
+/* Card styling */
+.sl-link-card {
+  border-color: var(--sl-color-gray-5);
+}
+
+.sl-link-card:hover {
+  border-color: var(--sl-color-accent);
+}
+
+/* Subtle gradient on the header bottom border */
+header.header {
+  border-bottom: 1px solid var(--sl-color-hairline-light);
+}
+
+/* Next page pagination button — smaller, lower contrast border */
+.pagination-links a[rel="next"],
+.pagination-links a[rel="prev"] {
+  font-size: 0.8rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.85rem;
+  border-color: var(--sl-color-gray-5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.pagination-links a[rel="next"] .link-title,
+.pagination-links a[rel="prev"] .link-title {
+  font-size: 1rem;
+}
+
+.pagination-links a[rel="next"]:hover, .pagination-links a[rel="prev"]:hover {
+  border-color: var(--sl-color-gray-3);
+}

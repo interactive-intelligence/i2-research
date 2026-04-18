@@ -1,0 +1,38 @@
+---
+title: Large Language Models
+description: Understanding the architecture, training, and capabilities of large language models.
+sidebar:
+  order: 2
+---
+
+Large language models (LLMs) are transformer-based neural networks trained on massive text corpora to predict the next token in a sequence. Through this deceptively simple objective, LLMs develop rich internal representations of language, world knowledge, and reasoning capabilities that emerge at scale.
+
+The progression from GPT-2 to GPT-4, and the development of models like LLaMA, Claude, and Gemini, has demonstrated that scaling model parameters, training data, and compute leads to qualitative jumps in capability. LLMs can now perform translation, summarization, code generation, mathematical reasoning, and open-ended conversation with remarkable fluency.
+
+## Training Pipeline
+
+LLM development typically follows a multi-stage pipeline:
+
+1. **Pre-training** — The model is trained on a large corpus (often trillions of tokens) using a next-token prediction objective. This stage is computationally expensive and develops the model's general knowledge and language understanding.
+
+2. **Supervised Fine-Tuning (SFT)** — The pre-trained model is fine-tuned on curated datasets of high-quality instruction-response pairs. This teaches the model to follow instructions and produce helpful responses.
+
+3. **Reinforcement Learning from Human Feedback (RLHF)** — Human evaluators rank model outputs, and a reward model is trained on these preferences. The language model is then optimized using reinforcement learning to produce outputs that align with human preferences.
+
+## Scaling Laws
+
+Research has revealed predictable relationships between model performance and three key factors: the number of parameters, the size of the training dataset, and the amount of compute used for training. These **scaling laws** have guided decisions about how to allocate resources for training increasingly capable models.
+
+## Key Concepts
+
+- **Tokenization** — The process of breaking text into sub-word units that serve as the model's vocabulary.
+- **Autoregressive Generation** — Producing output one token at a time, with each token conditioned on all previous tokens.
+- **Emergent Abilities** — Capabilities that appear only at sufficient scale, such as in-context learning and chain-of-thought reasoning.
+- **Context Window** — The maximum number of tokens a model can process in a single forward pass.
+- **Hallucination** — When a model generates plausible-sounding but factually incorrect information.
+
+## Further Reading
+
+- Brown, T., et al. (2020). "Language Models are Few-Shot Learners." *NeurIPS*.
+- Ouyang, L., et al. (2022). "Training Language Models to Follow Instructions with Human Feedback." *NeurIPS*.
+- Kaplan, J., et al. (2020). "Scaling Laws for Neural Language Models." *arXiv preprint*.

@@ -1,0 +1,54 @@
+---
+title: Neural Coding
+description: How the brain represents and transmits information through patterns of neural activity.
+sidebar:
+  order: 2
+---
+
+Neural coding is the study of how information about the world is represented in the activity of neurons. From sensory perception to motor control, every mental process relies on patterns of electrical activity in the brain. Understanding these codes — how stimuli map to neural responses and how downstream circuits read out that information — is one of the central challenges in neuroscience.
+
+The question of neural coding connects directly to artificial intelligence: the representational strategies used by biological systems continue to inspire and inform the design of artificial neural networks.
+
+## Rate Coding vs. Temporal Coding
+
+The two dominant frameworks for understanding neural representations are:
+
+### Rate Coding
+The simplest and most established view: information is encoded in the **firing rate** of a neuron — the average number of spikes per unit time. A visual neuron, for example, might fire at a higher rate when its preferred stimulus orientation is present. Rate coding is robust to noise and supported by extensive experimental evidence.
+
+### Temporal Coding
+A richer view: information is carried not just in how many spikes occur, but in their **precise timing**. This includes:
+- **Spike timing relative to a reference signal** (e.g., phase coding relative to oscillations)
+- **Inter-spike intervals** — the precise gaps between consecutive spikes
+- **Synchrony** — coordinated firing across populations of neurons
+
+Temporal codes can transmit more information per spike but require higher-precision readout mechanisms.
+
+## Population Coding
+
+Individual neurons are noisy and ambiguous. In practice, information is distributed across **populations** of neurons. Population coding approaches include:
+
+- **Population vectors** — Combining the preferred directions of many neurons, weighted by their firing rates, to estimate an encoded quantity (e.g., movement direction in motor cortex).
+- **Bayesian decoding** — Treating neural responses as probabilistic evidence and using Bayes' rule to infer the most likely stimulus.
+- **Dimensionality reduction** — Techniques like PCA and manifold learning that reveal low-dimensional structure in high-dimensional population activity.
+
+## Encoding and Decoding
+
+Neural coding research involves two complementary perspectives:
+
+- **Encoding models** ask: given a stimulus, what neural response do we predict? These models characterize what information neurons carry.
+- **Decoding models** ask: given a neural response, what stimulus or intention can we infer? These models are the basis of brain-computer interfaces and neuroprosthetics.
+
+## Key Concepts
+
+- **Tuning Curves** — Functions describing how a neuron's firing rate varies with a stimulus parameter (e.g., orientation, frequency, direction).
+- **Receptive Field** — The region of sensory space that influences a neuron's activity.
+- **Signal-to-Noise Ratio** — The reliability of neural coding depends on how strongly stimulus-driven responses stand out from background variability.
+- **Sparse Coding** — A coding scheme where only a small fraction of neurons are active at any time, balancing representational capacity with metabolic efficiency.
+- **Neural Manifolds** — Low-dimensional surfaces in the space of population activity that constrain neural dynamics during behavior.
+
+## Further Reading
+
+- Rieke, F., et al. (1997). *Spikes: Exploring the Neural Code*. MIT Press.
+- Quiroga, R. Q. & Panzeri, S. (2009). "Extracting Information from Neuronal Populations: Information Theory and Decoding Approaches." *Nature Reviews Neuroscience*.
+- Georgopoulos, A. P., et al. (1986). "Neuronal Population Coding of Movement Direction." *Science*.

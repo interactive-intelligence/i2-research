@@ -6,19 +6,35 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			components: {
+				Hero: './src/components/Hero.astro',
+			},
+			title: 'I2 Research Guide',
+			logo: {
+				src: './src/assets/i2logo.png',
+				alt: 'Interactive Intelligence',
+			},
+			customCss: ['./src/styles/custom.css'],
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'Getting Started',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{ slug: 'getting-started/introduction' },
+						{ slug: 'getting-started/how-to-use' },
+						{ slug: 'getting-started/research-tips' },
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'AI Research',
+					autogenerate: { directory: 'ai' },
+				},
+				{
+					label: 'Machine Learning',
+					autogenerate: { directory: 'ml' },
+				},
+				{
+					label: 'Neuroscience',
+					autogenerate: { directory: 'neuroscience' },
 				},
 			],
 		}),
