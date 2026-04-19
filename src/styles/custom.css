@@ -106,6 +106,10 @@ nav.sidebar a[aria-current="page"] {
   font-size: 1.05rem;
 }
 
+.sl-markdown-content code {
+  border-radius: 0.2rem;
+}
+
 /* Card styling */
 .sl-link-card {
   border-color: var(--sl-color-gray-5);
