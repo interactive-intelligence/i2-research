@@ -3,7 +3,7 @@ title: Introduction
 description: Learn about Interactive Intelligence (I2) and what this research guide covers.
 ---
 
-Welcome to the **I2 Research Guide**, a resource created by [Interactive Intelligence](https://i2-research.org) (I2) to help researchers, students, and practitioners navigate the rapidly evolving landscape of artificial intelligence, machine learning, and neuroscience.
+Welcome to the **I2 Research Guide**, a resource created by [Interactive Intelligence](https://uw-i2.org) (I2) to help researchers, students, and practitioners navigate the rapidly evolving landscape of artificial intelligence, machine learning, and neuroscience.
 
 ## What is I2?
 
