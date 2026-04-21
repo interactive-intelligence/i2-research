@@ -1,0 +1,69 @@
+---
+title: Neuroscience-Inspired AI
+description: How principles from neuroscience have shaped the design of modern artificial intelligence systems.
+sidebar:
+  order: 3
+---
+
+import UrlBadge from '../../../components/UrlBadge.astro';
+
+The history of artificial intelligence is deeply intertwined with neuroscience. The perceptron was inspired by the McCulloch-Pitts neuron model; backpropagation echoes error-correction processes hypothesized to occur in the cerebellum; and the transformer's attention mechanism has analogies to selective visual attention in primates. Understanding these connections illuminates both where AI has come from and where biology might point next.
+
+This page traces the bidirectional relationship: neuroscience ideas that have shaped AI, and AI tools that are now illuminating the brain.
+
+## From Neuroscience to AI
+
+### The Neuron as a Computing Unit
+
+The artificial neuron — computing a weighted sum of inputs and passing it through a non-linearity — is a direct abstraction of the integrate-and-fire dynamics of biological neurons. While dramatically simplified, this model captures the essential nonlinearity that allows networks to approximate arbitrary functions.
+
+### Convolutional Neural Networks and Visual Cortex
+
+The CNN architecture was directly inspired by Hubel and Wiesel's Nobel Prize-winning discoveries about the visual cortex. Simple cells in V1 act as local edge detectors (analogous to convolutional filters), and complex cells pool over small spatial regions (analogous to max-pooling). Fukushima's Neocognitron (1980) and later LeCun's LeNet explicitly encoded these principles.
+
+### Attention and the Spotlight of Cognition
+
+The attention mechanism in transformers shares conceptual ground with selective attention in neuroscience — the brain's ability to prioritize relevant sensory information while suppressing irrelevant input. Biological attention involves top-down feedback from frontal and parietal cortex modulating activity in sensory areas, much as learned query-key-value attention modulates which information flows forward.
+
+### Reinforcement Learning and the Dopamine System
+
+Temporal difference (TD) learning — the backbone of modern deep reinforcement learning — was partly motivated by models of dopaminergic neurons in the basal ganglia. Reward prediction error signals computed by the TD algorithm closely match the firing patterns of midbrain dopamine neurons: they respond not to reward itself, but to the difference between expected and received reward. This neuroscience-AI dialogue established a productive feedback loop between computational modeling and biological experiment.
+
+### Predictive Coding
+
+Predictive coding — the hypothesis that the brain is a hierarchical prediction machine, constantly generating top-down predictions and propagating only the prediction errors upward — is an influential theoretical framework in both neuroscience and AI. It provides an alternative to backpropagation that is more biologically plausible, with connections to variational autoencoders and active inference frameworks.
+
+## From AI to Neuroscience
+
+### Deep Learning as a Model of Brain Representations
+
+Deep neural networks trained on tasks like image recognition and language modeling have been found to develop internal representations that closely match representations measured in the ventral visual stream and language areas of the brain. This convergent evolution suggests that the tasks themselves, rather than the specific architecture, drive the development of particular representational geometries.
+
+### AI-Guided Neural Data Analysis
+
+Large-scale neural recordings generate datasets too complex for traditional analysis. Machine learning tools — variational autoencoders for dimensionality reduction, recurrent networks for neural dynamics modeling, graph neural networks for connectivity analysis — have become standard methods for extracting structure from neural population data.
+
+### Foundation Models for Neuroscience
+
+Recently, large pre-trained models have been applied to neural time series data, training on population spiking activity to build general-purpose representations that can be fine-tuned for decoding, generation, or anomaly detection — a direct transfer of the foundation model paradigm from NLP to neuroscience.
+
+## Active Research Frontiers
+
+- **Biologically plausible learning rules** — Developing alternatives to backpropagation (e.g., forward-forward algorithm, local learning rules, feedback alignment) that can be implemented by neural circuits without the global error signal that backprop requires.
+- **Continual learning** — Biological brains learn new tasks without catastrophically forgetting old ones. Understanding mechanisms like synaptic consolidation and hippocampal-cortical complementary learning systems may unlock continual learning in AI.
+- **Sparse, compositional representations** — The brain appears to represent concepts through sparse, distributed patterns. Mechanistic interpretability work in AI and neural population geometry research in neuroscience are converging on similar questions.
+- **World models** — The idea that intelligent agents maintain internal models of the environment for planning and imagination connects to concepts from cognitive science (mental simulation) and neuroscience (hippocampal replay and prospective memory).
+
+## Key Concepts
+
+- **Representational Similarity Analysis (RSA)** — A method comparing the geometry of representations in neural networks and brain recordings, enabling quantitative model-brain comparison.
+- **Neural Scaling** — The observation that both biological brains and artificial networks exhibit power-law improvements with size and data, suggesting shared principles of efficient learning.
+- **Complementary Learning Systems** — The hippocampus rapidly encodes specific episodes; the neocortex slowly consolidates statistical regularities. This division motivates hybrid AI architectures with fast and slow learning components.
+- **Inductive Biases** — Architectural choices (convolution, recurrence, attention) that encode structural assumptions analogous to the innate organizational principles of biological sensory systems.
+
+## Further Reading
+
+<UrlBadge url="https://www.cell.com/neuron/fulltext/S0896-6273(17)30509-3" title="Neuroscience-Inspired Artificial Intelligence" description="Hassabis et al., 2017 — a landmark review of neuroscience ideas driving AI progress" />
+<UrlBadge url="https://www.nature.com/articles/s41593-019-0520-2" title="A Deep Learning Framework for Neuroscience" description="Richards et al., 2019 — using deep networks as models of brain computation" />
+<UrlBadge url="https://www.science.org/doi/10.1126/science.275.5306.1593" title="A Neural Substrate of Prediction and Reward" description="Schultz, Dayan & Montague, 1997 — dopamine neurons as TD error signals" />
+<UrlBadge url="https://www.nature.com/articles/nn.4244" title="Using Goal-Driven Deep Learning Models to Understand Sensory Cortex" description="Yamins & DiCarlo, 2016 — DNNs as models of the ventral visual stream" />

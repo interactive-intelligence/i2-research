@@ -1,0 +1,75 @@
+---
+title: Neuromorphic Computing
+description: Brain-inspired computing architectures that mimic biological neural circuits to achieve energy-efficient intelligence.
+sidebar:
+  order: 2
+---
+
+import UrlBadge from '../../../components/UrlBadge.astro';
+
+Neuromorphic computing is the design of hardware and software systems that emulate the structure and dynamics of biological neural circuits. Coined by Carver Mead in the late 1980s, the field aims to replicate the extraordinary energy efficiency and computational principles of the brain — a device that processes rich sensory streams and drives complex behavior on roughly 20 watts — in silicon.
+
+As conventional computing approaches fundamental physical limits, neuromorphic architectures offer a compelling path toward intelligent systems that are orders of magnitude more energy-efficient than traditional von Neumann machines.
+
+## Motivation: The Brain as a Computing Paradigm
+
+The brain differs fundamentally from conventional computers in its architecture:
+
+- **No separation of memory and compute** — In biological neural networks, computation and memory are co-located at the synapse. Conventional CPUs spend enormous energy moving data between processor and memory (the "memory wall").
+- **Asynchronous, event-driven operation** — Neurons communicate through sparse, discrete spikes rather than continuous clock-driven signals, transmitting information only when something changes.
+- **Massive parallelism** — The brain performs billions of operations simultaneously through its ~86 billion neurons and ~100 trillion synapses.
+- **Adaptive hardware** — Synaptic weights change continuously through plasticity rules, making the hardware itself a learning substrate.
+
+## Spiking Neural Networks
+
+The computational model underlying most neuromorphic systems is the **spiking neural network (SNN)**, where neurons integrate inputs and emit binary spikes rather than continuous activations. Key properties:
+
+- **Temporal dynamics** — Neurons have membrane potentials that decay over time, enabling time-dependent computation.
+- **Sparse activity** — Only a small fraction of neurons spike at any moment, yielding sparse representations that consume little power.
+- **Event-driven computation** — Processing occurs only when spikes arrive, eliminating idle computation.
+
+Training SNNs remains an active challenge. Approaches include surrogate gradient methods (approximating the non-differentiable spike function), spike-timing-dependent plasticity, and conversion of pre-trained ANNs to spiking equivalents.
+
+## Neuromorphic Hardware Platforms
+
+### Intel Loihi
+
+Intel's Loihi chip (2018) and Loihi 2 (2021) implement on-chip learning using spike-timing-dependent plasticity. Each chip contains hundreds of thousands of artificial neurons with programmable learning rules, targeting autonomous robots, sparse coding, and constraint-satisfaction problems.
+
+### IBM TrueNorth
+
+IBM TrueNorth (2014) contains one million neurons and 256 million synapses on a single chip, consuming only 70 mW at full utilization. Its massively parallel, event-driven architecture is designed for inference on edge devices.
+
+### SpiNNaker
+
+The Spiking Neural Network Architecture from the University of Manchester uses an array of ARM processors connected by a custom packet-switched network to simulate large-scale biological neural models in real time, serving primarily as a research platform.
+
+### Intel's Hala Point
+
+Announced in 2024, Hala Point scales Loihi 2 to a rack-scale system with 1.15 billion neurons, targeting foundation model inference and scientific simulation.
+
+## Memristive Synapses
+
+A promising hardware substrate for synaptic plasticity is the **memristor**: a two-terminal device whose resistance depends on the history of current through it. Arrays of memristors can implement weight matrices in-memory, enabling analog matrix-vector multiplication — the core operation of neural networks — at extremely low energy.
+
+## Applications
+
+- **Edge AI** — Neuromorphic chips run neural network inference on low-power sensors, wearables, and IoT devices where battery life is critical.
+- **Sensory processing** — Event cameras and silicon cochleas produce spike trains that pair naturally with neuromorphic processors.
+- **Robotics** — Adaptive locomotion controllers and sensorimotor loops implemented in spiking hardware for real-time, energy-efficient robot control.
+- **Neuroscience simulation** — Platforms like SpiNNaker enable large-scale simulation of biological circuits to test computational hypotheses.
+
+## Key Concepts
+
+- **Spike** — A brief, all-or-nothing electrical pulse that neurons use to communicate; the basic unit of information in spiking networks.
+- **Leaky Integrate-and-Fire (LIF)** — The canonical simplified neuron model: membrane voltage leaks toward rest, integrates incoming spikes, and fires when a threshold is crossed.
+- **Synaptic Weight** — Stored locally at each artificial synapse; updated by on-chip plasticity rules without off-chip communication.
+- **Event-Driven Processing** — Computation triggered by spike events rather than a global clock, enabling near-zero power when inputs are silent.
+- **In-Memory Computing** — Performing matrix operations where data is stored, eliminating energy-costly data movement.
+
+## Further Reading
+
+<UrlBadge url="https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html" title="Intel Neuromorphic Research" description="Intel's neuromorphic computing program, including Loihi chips and the INRC community" />
+<UrlBadge url="https://open-neuromorphic.org/" title="Open Neuromorphic" description="Community hub for open-source neuromorphic hardware, software, and research" />
+<UrlBadge url="https://arxiv.org/abs/2109.12894" title="Loihi 2: A New-Generation Neuromorphic Processor" description="Davies et al., 2021 — Loihi 2 architecture and programmable learning rules" />
+<UrlBadge url="https://www.nature.com/articles/s43588-022-00187-5" title="Opportunities for Neuromorphic Computing" description="Schuman et al., 2022 — a broad survey of algorithms and applications" />

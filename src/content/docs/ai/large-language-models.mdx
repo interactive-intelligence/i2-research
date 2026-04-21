@@ -5,6 +5,8 @@ sidebar:
   order: 2
 ---
 
+import UrlBadge from '../../../components/UrlBadge.astro';
+
 Large language models (LLMs) are transformer-based neural networks trained on massive text corpora to predict the next token in a sequence. Through this deceptively simple objective, LLMs develop rich internal representations of language, world knowledge, and reasoning capabilities that emerge at scale.
 
 The progression from GPT-2 to GPT-4, and the development of models like LLaMA, Claude, and Gemini, has demonstrated that scaling model parameters, training data, and compute leads to qualitative jumps in capability. LLMs can now perform translation, summarization, code generation, mathematical reasoning, and open-ended conversation with remarkable fluency.
@@ -33,6 +35,6 @@ Research has revealed predictable relationships between model performance and th
 
 ## Further Reading
 
-- Brown, T., et al. (2020). "Language Models are Few-Shot Learners." *NeurIPS*.
-- Ouyang, L., et al. (2022). "Training Language Models to Follow Instructions with Human Feedback." *NeurIPS*.
-- Kaplan, J., et al. (2020). "Scaling Laws for Neural Language Models." *arXiv preprint*.
+<UrlBadge url="https://arxiv.org/abs/2005.14165" title="Language Models are Few-Shot Learners" description="Brown et al., 2020 — the GPT-3 paper introducing in-context learning" />
+<UrlBadge url="https://arxiv.org/abs/2001.08361" title="Scaling Laws for Neural Language Models" description="Kaplan et al., 2020 — empirical relationships between scale and performance" />
+<UrlBadge url="https://arxiv.org/abs/2203.02155" title="Training Language Models to Follow Instructions" description="Ouyang et al., 2022 — InstructGPT and RLHF" />

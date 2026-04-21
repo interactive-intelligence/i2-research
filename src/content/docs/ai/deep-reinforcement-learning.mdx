@@ -1,0 +1,103 @@
+---
+title: Deep Reinforcement Learning
+description: Combining deep learning with reinforcement learning to train agents that master complex sequential decision-making.
+sidebar:
+  order: 5
+---
+
+import UrlBadge from '../../../components/UrlBadge.astro';
+
+Deep reinforcement learning (deep RL) combines the representational power of deep neural networks with the decision-making framework of reinforcement learning. Rather than learning from labeled data, a deep RL agent learns by interacting with an environment: taking actions, observing outcomes, and adjusting its policy to maximize cumulative reward.
+
+This paradigm has produced some of the most striking demonstrations of AI capability — from defeating world champions at Go and chess to controlling plasma in nuclear fusion reactors — and has become a central research direction at the intersection of AI and neuroscience, given its connections to reward learning in biological brains.
+
+## The Reinforcement Learning Framework
+
+At each timestep $t$, an agent observes state $s_t$, selects action $a_t$ according to its policy $\pi(a \mid s)$, receives reward $r_t$, and transitions to state $s_{t+1}$. The goal is to find a policy that maximizes the expected discounted return:
+
+$$
+G_t = \sum_{k=0}^{\infty} \gamma^k r_{t+k+1}
+$$
+
+where $\gamma \in [0, 1)$ is the discount factor weighting immediate versus future rewards.
+
+The two central quantities are:
+- **Value function** $V^\pi(s) = \mathbb{E}_\pi[G_t \mid s_t = s]$ — the expected return from state $s$ under policy $\pi$.
+- **Action-value function** $Q^\pi(s, a) = \mathbb{E}_\pi[G_t \mid s_t = s, a_t = a]$ — the expected return from taking action $a$ in state $s$, then following $\pi$.
+
+## Temporal Difference Learning
+
+Temporal difference (TD) methods learn value functions by bootstrapping — updating estimates based on other estimates rather than waiting for the episode to end. The TD(0) update is:
+
+$$
+V(s_t) \leftarrow V(s_t) + \alpha \left[ r_{t+1} + \gamma V(s_{t+1}) - V(s_t) \right]
+$$
+
+The bracketed term is the **TD error** — the difference between the predicted and observed value. Remarkably, this signal closely matches the firing pattern of midbrain dopamine neurons, providing a direct link between RL theory and neuroscience (see [Neuroscience-Inspired AI](/intersection/neuro-inspired-ai/)).
+
+## Key Algorithms
+
+### Deep Q-Networks (DQN)
+
+DQN (Mnih et al., 2015) was the first algorithm to demonstrate human-level performance on Atari games directly from pixels. Key innovations:
+
+- **Neural network function approximation** — A CNN parameterizes the Q-function, mapping raw pixel observations to Q-values for each action.
+- **Experience replay** — Transitions are stored in a replay buffer and sampled randomly to break temporal correlations during training.
+- **Target network** — A periodically updated copy of the Q-network provides stable regression targets.
+
+### Policy Gradient Methods
+
+Instead of learning a value function and deriving a policy, policy gradient methods directly optimize the policy parameters $\theta$ using the gradient of expected return:
+
+$$
+\nabla_\theta J(\theta) = \mathbb{E}_\pi \left[ \nabla_\theta \log \pi_\theta(a \mid s) \cdot G_t \right]
+$$
+
+**REINFORCE** is the simplest policy gradient algorithm. Variance is reduced by subtracting a baseline (often the value function), yielding the **advantage** $A(s, a) = Q(s, a) - V(s)$.
+
+### Actor-Critic Methods
+
+Actor-critic architectures maintain both a policy (actor) and a value function (critic). The critic evaluates the actor's actions, providing a low-variance training signal. Modern variants include:
+
+- **A3C / A2C** (Asynchronous Advantage Actor-Critic) — Multiple agents explore in parallel, decorrelating experience.
+- **PPO** (Proximal Policy Optimization) — Clips the policy update ratio to prevent destructively large steps; widely used for its stability and simplicity.
+- **SAC** (Soft Actor-Critic) — Maximizes both return and entropy, encouraging exploration and robustness in continuous control.
+
+### Model-Based RL
+
+Model-free methods learn directly from interaction; model-based methods additionally learn a model of the environment's dynamics, enabling planning and sample efficiency:
+
+- **Dyna-Q** — Augments Q-learning with simulated experience from a learned model.
+- **MuZero** (DeepMind) — Learns a latent dynamics model and plans using Monte Carlo Tree Search, achieving superhuman performance across board games and Atari without knowing the game rules.
+- **Dreamer / DreamerV3** — Learns a world model in a latent space and trains a policy entirely through imagination, achieving strong performance on visual control tasks.
+
+## Exploration vs. Exploitation
+
+A fundamental challenge: the agent must balance **exploiting** its current knowledge to collect reward with **exploring** to discover potentially better strategies. Common approaches:
+
+- **ε-greedy** — With probability ε take a random action; otherwise act greedily.
+- **Intrinsic motivation** — Add a reward bonus for visiting novel states (e.g., based on prediction error or count-based exploration).
+- **Thompson sampling / posterior sampling** — Maintain uncertainty over the Q-function and sample from it to guide exploration.
+
+## Applications
+
+- **Game playing** — AlphaGo, AlphaZero, MuZero, OpenAI Five (Dota 2)
+- **Robotics** — Manipulation, locomotion, dexterous hand control
+- **Science** — Plasma control in tokamak fusion reactors (DeepMind × Google), protein structure prediction auxiliary tasks
+- **LLM alignment** — RLHF uses PPO to train language models to follow human preferences
+- **Drug discovery and materials science** — Molecular design as sequential decision-making
+
+## Key Concepts
+
+- **Markov Decision Process (MDP)** — The mathematical framework underlying RL: states, actions, transition probabilities, and rewards.
+- **On-policy vs. Off-policy** — On-policy methods (PPO, A2C) learn about the policy being followed; off-policy methods (DQN, SAC) can learn from data generated by any policy.
+- **Sample Efficiency** — The amount of environment interaction required to learn a good policy. Model-based and off-policy methods tend to be more sample efficient.
+- **Reward Shaping** — Modifying the reward signal to guide learning, with care taken not to change the optimal policy.
+- **Sim-to-Real Transfer** — Training in simulation and deploying in the real world; requires careful domain randomization to bridge the gap.
+
+## Resources
+
+<UrlBadge url="http://incompleteideas.net/book/the-book-2nd.html" title="Reinforcement Learning: An Introduction" description="Sutton & Barto — the canonical RL textbook, freely available online" />
+<UrlBadge url="https://spinningup.openai.com/en/latest/" title="Spinning Up in Deep RL" description="OpenAI's practical introduction to deep RL with code, algorithms, and exercises" />
+<UrlBadge url="https://huggingface.co/learn/deep-rl-course/unit0/introduction" title="HuggingFace Deep RL Course" description="Hands-on deep RL course with Google Colab notebooks, from Q-learning to PPO" />
+<UrlBadge url="https://arxiv.org/abs/1312.5602" title="Playing Atari with Deep Reinforcement Learning" description="Mnih et al., 2013 — the original DQN paper" />

@@ -21,6 +21,9 @@ Broad curiosity is valuable, but vague goals stall progress. Narrow down to a co
 
 One of the best ways to deeply understand a method is to re-implement it from scratch or reproduce a published result. This forces you to confront details that papers often gloss over, and it builds the hands-on intuition needed to extend or critique existing work.
 
+## Visualize! Visualize! Visualize!
+Neural networks are a black box with large number of hyperparameters. If something doesn't work, is it because of the idea or the execution? How do you know? For RL, visualize **every input, output, and trajectory**! You should do this early and often.
+
 ## Keep a Research Journal
 
 Write down what you read, what you tried, and what you learned — even informally. A simple log of daily notes pays dividends when you need to retrace your thinking, write up your work, or explain your approach to a collaborator.

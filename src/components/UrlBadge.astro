@@ -34,7 +34,10 @@ function resolveUrl(href: string, base: string): string {
 // Fetch page HTML, extract OG data + favicon
 try {
   const res = await fetch(prefixedURL, {
-    headers: { "User-Agent": "Mozilla/5.0 (compatible; LinkPreviewBot/1.0)" },
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    },
     signal: AbortSignal.timeout(6000),
   });
   const html = await res.text();
@@ -87,7 +90,7 @@ try {
 
   const linkTagRe = /<link([^>]+)>/gi;
   const relRe = /\brel=["']([^"']+)["']/i;
-  const hrefRe = /\bhref=["']([^"']+)["']/i;
+  const hrefRe = /\bhref=["']?([^"'\s>]+)/i;
 
   for (const linkMatch of html.matchAll(linkTagRe)) {
     const attrs = linkMatch[1];
@@ -131,6 +134,24 @@ try {
   // page fetch failed — will use overrides or empty strings
 }
 
+// Fallback: Google favicon service (handles sites that block server-side fetches)
+if (!faviconDataUrl) {
+  try {
+    const googleFaviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+    const gRes = await fetch(googleFaviconUrl, { signal: AbortSignal.timeout(4000) });
+    if (gRes.ok) {
+      const contentType = gRes.headers.get("content-type") ?? "image/png";
+      if (/image/.test(contentType)) {
+        const buf = await gRes.arrayBuffer();
+        const b64 = Buffer.from(buf).toString("base64");
+        faviconDataUrl = `data:${contentType};base64,${b64}`;
+      }
+    }
+  } catch {
+    // Google fallback failed — will render text abbreviation
+  }
+}
+
 // For GitHub: prefer the clean owner/repo extracted from URL path
 if (domain === "github.com") {
   const parts = urlObj.pathname.split("/").filter(Boolean);
@@ -168,7 +189,7 @@ title = title || domain;
 
 <style>
   .url-badge {
-    margin: 2rem 0;
+    margin: 0.7rem 0;
     display: inline-flex;
     align-items: center;
     gap: 0.875rem;

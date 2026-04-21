@@ -2,8 +2,10 @@
 title: Neural Networks
 description: Core concepts in neural network design, from perceptrons to deep architectures.
 sidebar:
-  order: 2
+  order: 3
 ---
+
+import UrlBadge from '../../../components/UrlBadge.astro';
 
 Neural networks are computational models inspired by the structure of biological nervous systems. Composed of layers of interconnected nodes (neurons), they learn hierarchical representations of data through training, making them remarkably versatile function approximators.
 
@@ -56,6 +58,6 @@ Modern training typically uses **stochastic gradient descent (SGD)** or adaptive
 
 ## Further Reading
 
-- Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press.
-- LeCun, Y., Bengio, Y., & Hinton, G. (2015). "Deep Learning." *Nature*, 521(7553), 436-444.
-- He, K., et al. (2016). "Deep Residual Learning for Image Recognition." *CVPR*.
+<UrlBadge url="https://www.deeplearningbook.org/" title="Deep Learning" description="Goodfellow, Bengio & Courville — the definitive textbook, freely available online" />
+<UrlBadge url="https://karpathy.ai/zero-to-hero.html" title="Neural Networks: Zero to Hero" description="Andrej Karpathy's hands-on lecture series building neural networks from scratch" />
+<UrlBadge url="https://arxiv.org/abs/1512.03385" title="Deep Residual Learning for Image Recognition" description="He et al., 2016 — residual connections enabling very deep networks" />

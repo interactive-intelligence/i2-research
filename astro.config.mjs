@@ -32,16 +32,16 @@ export default defineConfig({
           ],
         },
         {
-          label: "AI Research",
+          label: "Artificial Intelligence",
           autogenerate: { directory: "ai" },
-        },
-        {
-          label: "Machine Learning",
-          autogenerate: { directory: "ml" },
         },
         {
           label: "Neuroscience",
           autogenerate: { directory: "neuroscience" },
+        },
+        {
+          label: "AI × Neuroscience",
+          autogenerate: { directory: "intersection" },
         },
       ],
     }),

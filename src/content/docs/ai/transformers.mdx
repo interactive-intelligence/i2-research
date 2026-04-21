@@ -5,6 +5,8 @@ sidebar:
   order: 1
 ---
 
+import UrlBadge from '../../../components/UrlBadge.astro';
+
 The transformer architecture, introduced in the landmark 2017 paper "Attention Is All You Need" by Vaswani et al., has fundamentally reshaped the field of artificial intelligence. By replacing recurrent and convolutional layers with a purely attention-based mechanism, transformers enable highly parallel computation and excel at capturing long-range dependencies in sequential data.
 
 Transformers have become the backbone of modern natural language processing, computer vision, and even protein structure prediction. Their scalability and flexibility make them the architecture of choice for many of today's most capable AI systems.
@@ -29,6 +31,6 @@ The architecture consists of an **encoder** and a **decoder**, each built from s
 
 ## Further Reading
 
-- Vaswani, A., et al. (2017). "Attention Is All You Need." *Advances in Neural Information Processing Systems*.
-- Devlin, J., et al. (2019). "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding." *NAACL*.
-- Dosovitskiy, A., et al. (2021). "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale." *ICLR*.
+<UrlBadge url="https://arxiv.org/abs/1706.03762" title="Attention Is All You Need" description="Vaswani et al., 2017 — the original transformer paper" />
+<UrlBadge url="https://jalammar.github.io/illustrated-transformer/" title="The Illustrated Transformer" description="Jay Alammar's visual walkthrough of the transformer architecture" />
+<UrlBadge url="https://arxiv.org/abs/1810.04805" title="BERT: Pre-training of Deep Bidirectional Transformers" description="Devlin et al., 2019 — BERT and the era of pre-trained language models" />

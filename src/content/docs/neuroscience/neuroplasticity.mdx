@@ -1,0 +1,59 @@
+---
+title: Neuroplasticity
+description: The brain's capacity to reorganize its structure and function in response to experience and learning.
+sidebar:
+  order: 3
+---
+
+import UrlBadge from '../../../components/UrlBadge.astro';
+
+Neuroplasticity is the brain's capacity to modify its own structure and function throughout life in response to experience, learning, injury, or environmental change. Far from being a static organ, the adult brain is continuously reorganized at multiple scales — from the strengthening and pruning of individual synapses to the large-scale remapping of cortical regions.
+
+Understanding plasticity is central to both neuroscience and AI: the same principles that allow biological neural networks to learn from experience have inspired the training algorithms powering modern machine learning.
+
+## Forms of Synaptic Plasticity
+
+### Hebbian Learning
+
+The foundational principle of synaptic plasticity is Hebb's postulate: *"neurons that fire together, wire together."* When a presynaptic neuron repeatedly drives a postsynaptic neuron, the synapse between them is strengthened. This activity-dependent co-occurrence rule is the biological precursor to many learning rules in artificial neural networks, including correlation-based weight updates.
+
+### Long-Term Potentiation and Depression
+
+Experimentally, synaptic strength is modified through:
+
+- **Long-Term Potentiation (LTP)** — Sustained high-frequency stimulation produces a long-lasting increase in synaptic efficacy. LTP is the primary cellular model for learning and memory, mediated largely by NMDA receptors and AMPA receptor trafficking.
+- **Long-Term Depression (LTD)** — Low-frequency stimulation produces a lasting decrease in synaptic strength, essential for synaptic specificity and forgetting.
+
+### Spike-Timing-Dependent Plasticity (STDP)
+
+A temporally precise form of Hebbian learning: if a presynaptic spike arrives just *before* a postsynaptic spike (within ~20 ms), the synapse is potentiated. If the order is reversed, the synapse is depressed. STDP is a biologically plausible local learning rule that has been incorporated into models of neural coding and spiking neural networks.
+
+## Structural Plasticity
+
+Beyond synaptic weight changes, the brain undergoes structural reorganization:
+
+- **Synaptogenesis and Pruning** — New synapses form continuously; unused connections are pruned, especially during development and sleep. This process is critical for refining neural circuits.
+- **Axonal Sprouting** — Following injury, intact axons can sprout new branches to innervate regions that have lost their original inputs.
+- **Adult Neurogenesis** — New neurons are born in the hippocampus throughout adulthood, a process implicated in spatial memory and pattern separation.
+
+## Cortical Reorganization
+
+At the systems level, the cortex can remap in response to altered input:
+
+- **Sensory Deprivation** — After losing a finger, the cortical territory representing that finger is taken over by neighboring fingers, demonstrating competitive dynamics among cortical representations.
+- **Skill Learning** — Musicians and other specialists show expanded cortical representations for the relevant body parts, reflecting experience-dependent plasticity.
+- **Critical Periods** — Certain forms of plasticity are maximal during developmentally defined windows (e.g., ocular dominance plasticity in visual cortex). Reopening these windows is an active research target for treating amblyopia and other conditions.
+
+## Key Concepts
+
+- **Synaptic Plasticity** — Activity-dependent changes in the strength of synaptic connections, the cellular basis of learning.
+- **Metaplasticity** — Plasticity of plasticity: the history of a synapse's activity modulates its future capacity for change.
+- **Homeostatic Plasticity** — Mechanisms that stabilize neural activity by scaling synaptic strengths up or down globally, preventing runaway excitation or silence.
+- **Engram** — The physical substrate of a memory; a distributed set of synaptic changes encoding a specific experience.
+- **Neural Compensation** — Following brain injury, surviving circuits reorganize to partially recover lost function.
+
+## Further Reading
+
+<UrlBadge url="https://www.nature.com/articles/nrn2787" title="Synaptic Plasticity: Multiple Forms, Functions, and Mechanisms" description="Citri & Malenka, 2008 — a comprehensive review of LTP, LTD, and plasticity rules" />
+<UrlBadge url="https://www.cell.com/neuron/fulltext/S0896-6273(12)00957-5" title="Spike-Timing-Dependent Plasticity: A Hebbian Rule Revisited" description="Dan & Poo — STDP mechanisms and computational implications" />
+<UrlBadge url="https://mitpress.mit.edu/9780262731652/the-organization-of-behavior/" title="The Organization of Behavior" description="Hebb, 1949 — the original text introducing Hebbian learning" />
