@@ -12,7 +12,6 @@ const prefixedURL =
     ? url
     : "https://" + url;
 const urlObj = new URL(prefixedURL);
-console.log(prefixedURL);
 const domain = urlObj.hostname.replace(/^www\./, "");
 
 // Fallback abbreviation (first 2 meaningful chars of domain)
