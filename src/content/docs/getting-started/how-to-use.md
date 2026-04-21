@@ -10,13 +10,13 @@ This guide is designed to be read both linearly and as a reference. Here are som
 Use the **sidebar** on the left to browse topics by category. Each section is organized from foundational concepts to more advanced topics:
 
 1. **Getting Started** — You are here. Orientation and overview.
-2. **AI Research** — Start with Transformers, then move to LLMs and Prompt Engineering.
-3. **Machine Learning** — Begin with Supervised Learning, explore Neural Networks, then Optimization.
-4. **Neuroscience** — Start with Computational Neuroscience, then Neural Coding, and finally Brain-Computer Interfaces.
+2. **Artificial Intelligence** — Start with Transformers, then move to Large Language Models, Neural Networks, Deep Reinforcement Learning, and Prompt Engineering.
+3. **Neuroscience** — Start with Computational Neuroscience, then Neural Coding, and finally Neuroplasticity.
+4. **AI × Neuroscience** — Explore Brain-Computer Interfaces, Neuro-Inspired AI, and Neuromorphic Computing — where biology and computation converge.
 
 ## Reading Order
 
-If you are new to these fields, we recommend starting with the **Machine Learning** section to build foundational knowledge, then exploring **AI Research** for modern applications, and finally **Neuroscience** for biological perspectives.
+If you are new to these fields, we recommend starting with the **Artificial Intelligence** section to build foundational knowledge, then exploring **Neuroscience** for biological perspectives, and finally **AI × Neuroscience** for topics at the intersection of the two fields.
 
 If you already have a background in one area, feel free to jump directly to the topics that interest you. Each article is written to be self-contained, with cross-references where relevant.
 
