@@ -7,6 +7,9 @@ import rehypeKatex from "rehype-katex";
 // https://astro.build/config
 export default defineConfig({
   site: "https://research.uw-i2.org",
+  build: {
+    concurrency: 4,
+  },
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
