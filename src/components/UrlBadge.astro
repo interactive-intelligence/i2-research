@@ -169,8 +169,6 @@ title = title || domain;
         class="favicon"
         src={faviconDataUrl}
         alt={domain}
-        width="28"
-        height="28"
       />
     ) : (
       <span class="abbr">{abbr}</span>
@@ -222,10 +220,12 @@ title = title || domain;
 
   .abbr {
     font-family: var(--sl-font-mono, monospace);
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--sl-color-accent);
     letter-spacing: -0.03em;
+    width: 35px;
+    text-align: center;
   }
 
   .content {
