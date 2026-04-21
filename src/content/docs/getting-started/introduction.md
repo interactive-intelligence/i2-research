@@ -13,11 +13,11 @@ Interactive Intelligence (I2) is a research organization dedicated to advancing 
 
 This guide is organized into three main research domains:
 
-- **AI Research** — Covers modern AI architectures and techniques, including transformers, large language models, and prompt engineering. These topics represent the cutting edge of what AI systems can do today.
+- **Artificial Intelligence** — Covers modern AI architectures and techniques, including transformers, large language models, deep reinforcement learning, neural networks, and prompt engineering. These topics represent the cutting edge of what AI systems can do today.
 
-- **Machine Learning** — Explores the core methods that underpin AI systems: supervised learning, neural network design, and optimization. Understanding these fundamentals is essential for anyone working in the field.
+- **Neuroscience** — Examines how biological neural systems process information, from computational models of the brain to neural coding and neuroplasticity. These insights inspire and inform the design of artificial systems.
 
-- **Neuroscience** — Examines how biological neural systems process information, from computational models of the brain to brain-computer interfaces. These insights inspire and inform the design of artificial systems.
+- **AI × Neuroscience** — Explores the intersection of the two fields through brain-computer interfaces, neuro-inspired AI, and neuromorphic computing — areas where biology and computation actively inform each other.
 
 ## Who This Guide Is For
 
