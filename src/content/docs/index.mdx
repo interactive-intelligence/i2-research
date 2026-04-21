@@ -16,21 +16,23 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid } from '@astrojs/starlight/components';
+import TopicCard from '../../components/TopicCard.astro';
 
 ## Explore Research Topics
+<br/>
 
 <CardGrid>
-	<Card title="AI Research" icon="star">
+	<TopicCard title="AI Research" icon="BrainCircuit" href="/ai/transformers/">
 		Dive into transformer architectures, large language models, and prompt engineering techniques that are shaping the future of artificial intelligence.
-	</Card>
-	<Card title="Machine Learning" icon="puzzle">
+	</TopicCard>
+	<TopicCard title="Machine Learning" icon="Network" href="/ml/supervised-learning/">
 		Master the fundamentals of supervised learning, neural network design, and optimization methods that power modern ML systems.
-	</Card>
-	<Card title="Neuroscience" icon="open-book">
+	</TopicCard>
+	<TopicCard title="Neuroscience" icon="Brain" href="/neuroscience/computational-neuroscience/">
 		Explore computational neuroscience, neural coding principles, and brain-computer interfaces at the intersection of biology and technology.
-	</Card>
-	<Card title="Getting Started" icon="rocket">
+	</TopicCard>
+	<TopicCard title="Getting Started" icon="Rocket" href="/getting-started/introduction/">
 		New here? Start with our [introduction](/getting-started/introduction/) to learn how this guide is organized and how to get the most out of it.
-	</Card>
+	</TopicCard>
 </CardGrid>
