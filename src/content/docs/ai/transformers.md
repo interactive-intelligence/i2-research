@@ -9,6 +9,8 @@ The transformer architecture, introduced in the landmark 2017 paper "Attention I
 
 Transformers have become the backbone of modern natural language processing, computer vision, and even protein structure prediction. Their scalability and flexibility make them the architecture of choice for many of today's most capable AI systems.
 
+![Transformer Architecture](../../../assets/transformers/transformer.webp)
+
 ## How Transformers Work
 
 At the core of the transformer is the **self-attention mechanism**, which allows each element in an input sequence to attend to every other element. This is computed through three learned linear projections — queries, keys, and values — that produce attention weights determining how much each element should influence others.
