@@ -80,6 +80,7 @@ try {
   };
   description = description.replace(
     /&amp;|&lt;|&gt;|&quot;|&#39;/g,
+    // @ts-ignore
     (m) => entities[m],
   );
 
