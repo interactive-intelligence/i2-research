@@ -64,28 +64,206 @@
   filter: drop-shadow(0 0 36px rgba(67, 20, 150, 0.7));
 }
 
-/* Hero banner styling for splash page */
+/* Hero atmosphere is now provided by AuroraBackground component */
 .hero {
-  background: radial-gradient(
-    ellipse at 50% 0%,
-    rgba(116, 75, 197, 0.15) 0%,
-    transparent 70%
-  );
+  background: transparent;
 }
 
-:root[data-theme="light"] .hero {
-  background: radial-gradient(
-    ellipse at 50% 0%,
-    rgba(116, 75, 197, 0.1) 0%,
-    transparent 70%
-  );
-}
-
-/* Remove gap between header and hero gradient */
+/* Remove gap between header and hero atmosphere */
 [data-template="splash"] .main-frame,
 [data-template="splash"] .main-frame > *,
 .content-panel:has(.hero) {
   padding-top: 0;
+}
+
+/* Make splash page chrome transparent so aurora bleeds through */
+[data-template="splash"] .main-frame,
+[data-template="splash"] .content-panel,
+[data-template="splash"] main {
+  background: transparent;
+}
+
+/* ─── Hero title — animated gradient text ─── */
+.hero-title-gradient {
+  background: linear-gradient(
+    120deg,
+    #cc88ff 0%,
+    #67e8f9 30%,
+    #c4b5fd 55%,
+    #ffc2ff 80%,
+    #cc88ff 100%
+  );
+  background-size: 280% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.015em;
+  filter: drop-shadow(0 2px 18px rgba(204, 136, 255, 0.18));
+}
+
+:root[data-theme="light"] .hero-title-gradient {
+  background: linear-gradient(
+    120deg,
+    #5b2ea3 0%,
+    #0f766e 30%,
+    #744bc5 55%,
+    #503690 80%,
+    #5b2ea3 100%
+  );
+  background-size: 280% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(116, 75, 197, 0.12));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-title-gradient {
+    animation: gradient-flow 9s ease-in-out infinite;
+  }
+}
+
+@keyframes gradient-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Tagline refinement ─── */
+.hero .tagline {
+  line-height: 1.55;
+  color: var(--sl-color-gray-2);
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1,
+  .hero .tagline,
+  .hero .actions {
+    animation: hero-fade-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .hero .tagline { animation-delay: 0.12s; }
+  .hero .actions { animation-delay: 0.24s; }
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Primary CTA button — shimmer & glow ─── */
+.hero .actions a:first-child {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 8px 28px -8px rgba(204, 136, 255, 0.55),
+              0 0 0 1px rgba(204, 136, 255, 0.25) inset;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+              box-shadow 0.35s ease;
+}
+
+.hero .actions a:first-child::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  pointer-events: none;
+  z-index: 1;
+  transition: left 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero .actions a:first-child:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px -8px rgba(204, 136, 255, 0.7),
+              0 0 0 1px rgba(204, 136, 255, 0.45) inset;
+}
+
+.hero .actions a:first-child:hover::after {
+  left: 130%;
+}
+
+:root[data-theme="light"] .hero .actions a:first-child {
+  box-shadow: 0 8px 24px -10px rgba(116, 75, 197, 0.45),
+              0 0 0 1px rgba(116, 75, 197, 0.18) inset;
+}
+
+:root[data-theme="light"] .hero .actions a:first-child:hover {
+  box-shadow: 0 14px 32px -10px rgba(116, 75, 197, 0.6),
+              0 0 0 1px rgba(116, 75, 197, 0.35) inset;
+}
+
+/* ─── Section heading on splash page ("Explore Research Topics") ─── */
+[data-template="splash"] .sl-markdown-content h2 {
+  position: relative;
+  text-align: center;
+  margin-top: 3rem;
+  padding-bottom: 0.6rem;
+  font-size: clamp(1.5rem, calc(1rem + 1.6vw), 2rem);
+  letter-spacing: -0.01em;
+}
+
+[data-template="splash"] .sl-markdown-content h2::before {
+  content: "// section";
+  display: block;
+  margin-bottom: 0.7rem;
+  font-family: var(--__sl-font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sl-color-accent);
+  opacity: 0.85;
+}
+
+[data-template="splash"] .sl-markdown-content h2::after {
+  content: "";
+  position: absolute;
+  bottom: -0.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4rem;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--sl-color-accent) 50%,
+    transparent 100%
+  );
+  border-radius: 2px;
+}
+
+/* ─── Topic card entrance — staggered fade-up on scroll ─── */
+[data-template="splash"] .topic-card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--card-index, 0) * 90ms);
+}
+
+[data-template="splash"] .topic-card[data-revealed="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-template="splash"] .topic-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Accent border on active sidebar items */
