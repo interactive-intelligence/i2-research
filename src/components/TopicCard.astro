@@ -20,8 +20,14 @@ import {
   TreePine,
   Eye,
   MessageSquare,
+  ArrowRight,
   type LucideProps,
 } from "@lucide/astro";
+
+import NetworkMotif from "./motifs/NetworkMotif.astro";
+import SynapseMotif from "./motifs/SynapseMotif.astro";
+import WaveMotif from "./motifs/WaveMotif.astro";
+import RocketMotif from "./motifs/RocketMotif.astro";
 
 type LucideComponent = (_props: LucideProps) => any;
 
@@ -48,103 +54,343 @@ const ICONS: Record<string, LucideComponent> = {
   MessageSquare,
 };
 
+const MOTIFS = {
+  network: NetworkMotif,
+  synapse: SynapseMotif,
+  wave: WaveMotif,
+  rocket: RocketMotif,
+};
+
 interface Props {
   icon: keyof typeof ICONS;
   title: string;
   href?: string;
+  motif?: keyof typeof MOTIFS;
 }
 
-const { icon, title, href } = Astro.props;
+const { icon, title, href, motif } = Astro.props;
 const Icon = ICONS[icon];
+const Motif = motif ? MOTIFS[motif] : null;
 ---
 
-<article class="topic-card">
+<article class="topic-card" data-motif={motif ?? null}>
   {
-    Icon && (
-      <div class="icon-wrap">
-        <Icon size={28} />
+    Motif && (
+      <div class="card-motif" aria-hidden="true">
+        <Motif />
       </div>
     )
   }
-  <p class="title">
-    {href ? <a class="card-link" href={href}>{title}</a> : title}
-  </p>
-  <div class="body"><slot /></div>
+  <div class="card-spotlight" aria-hidden="true"></div>
+
+  <div class="card-content">
+    <div class="card-header">
+      {
+        Icon && (
+          <div class="icon-wrap">
+            <Icon size={26} strokeWidth={1.75} />
+          </div>
+        )
+      }
+      <span class="card-index" aria-hidden="true"></span>
+    </div>
+
+    <p class="title">
+      {
+        href ? (
+          <a class="card-link" href={href}>
+            {title}
+          </a>
+        ) : (
+          title
+        )
+      }
+    </p>
+
+    <div class="body"><slot /></div>
+
+    {
+      href && (
+        <div class="card-cta" aria-hidden="true">
+          <span class="cta-label">Explore</span>
+          <ArrowRight size={16} strokeWidth={2} />
+        </div>
+      )
+    }
+  </div>
 </article>
 
+<script>
+  const cards = document.querySelectorAll<HTMLElement>(".topic-card");
+  cards.forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty("--mx", `${x}%`);
+      card.style.setProperty("--my", `${y}%`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--mx", "50%");
+      card.style.setProperty("--my", "50%");
+    });
+  });
+</script>
+
 <style>
+  @property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+  }
+
   .topic-card {
+    --card-color: #67e8f9;
+    --card-tint: #0f3d4a;
+    --card-surface-strong: color-mix(
+      in srgb,
+      var(--card-tint) 68%,
+      var(--sl-color-bg)
+    );
+    --card-surface-soft: color-mix(
+      in srgb,
+      var(--card-tint) 18%,
+      var(--sl-color-bg)
+    );
+    --mx: 50%;
+    --my: 50%;
+
+    counter-increment: topic-card;
     position: relative;
-    --card-color: var(--sl-color-purple);
-    --card-bg: var(--sl-color-purple-low);
+    isolation: isolate;
+    display: flex;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    background: linear-gradient(
+      155deg,
+      var(--card-surface-strong) 0%,
+      var(--card-surface-soft) 100%
+    );
+    box-shadow:
+      0 1px 0 0 color-mix(in srgb, var(--card-color) 18%, transparent) inset,
+      0 4px 24px -6px color-mix(in srgb, var(--card-color) 12%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--card-color) 22%, transparent);
+    transition:
+      transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+      box-shadow 0.4s ease;
+    min-height: 14rem;
+  }
+
+  .topic-card[data-motif="network"] {
+    --card-color: #67e8f9;
+    --card-tint: #0f3d4a;
+  }
+  .topic-card[data-motif="synapse"] {
+    --card-color: #c4b5fd;
+    --card-tint: #38235f;
+  }
+  .topic-card[data-motif="wave"] {
+    --card-color: #fbbf24;
+    --card-tint: #4b3310;
+  }
+  .topic-card[data-motif="rocket"] {
+    --card-color: #fb7185;
+    --card-tint: #4a1f33;
+  }
+
+  :root[data-theme="light"] .topic-card {
+    --card-color: #0f766e;
+    --card-tint: #ccfbf1;
+    --card-surface-strong: color-mix(
+      in srgb,
+      var(--card-tint) 86%,
+      var(--sl-color-bg)
+    );
+    --card-surface-soft: color-mix(
+      in srgb,
+      var(--card-tint) 18%,
+      var(--sl-color-bg)
+    );
+  }
+
+  :root[data-theme="light"] .topic-card[data-motif="network"] {
+    --card-color: #0f766e;
+    --card-tint: #ccfbf1;
+  }
+  :root[data-theme="light"] .topic-card[data-motif="synapse"] {
+    --card-color: #6d28d9;
+    --card-tint: #ede9fe;
+  }
+  :root[data-theme="light"] .topic-card[data-motif="wave"] {
+    --card-color: #b45309;
+    --card-tint: #fef3c7;
+  }
+  :root[data-theme="light"] .topic-card[data-motif="rocket"] {
+    --card-color: #be123c;
+    --card-tint: #ffe4e6;
+  }
+
+  .card-motif {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    opacity: 0.14;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+    color: var(--card-color);
+    -webkit-mask-image: radial-gradient(
+      ellipse 95% 90% at 62% 50%,
+      #000 22%,
+      transparent 95%
+    );
+    mask-image: radial-gradient(
+      ellipse 95% 90% at 62% 50%,
+      #000 22%,
+      transparent 95%
+    );
+  }
+
+  .topic-card:hover .card-motif {
+    opacity: 0.28;
+  }
+
+  :root[data-theme="light"] .card-motif {
+    opacity: 0.2;
+  }
+  :root[data-theme="light"] .topic-card:hover .card-motif {
+    opacity: 0.34;
+  }
+
+  .card-spotlight {
+    position: absolute;
+    margin-top: 0;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      360px circle at var(--mx) var(--my),
+      color-mix(in srgb, var(--card-color) 22%, transparent) 0%,
+      transparent 55%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .topic-card:hover .card-spotlight {
+    opacity: 1;
+  }
+
+  .topic-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--angle),
+      transparent 0deg,
+      color-mix(in srgb, var(--card-color) 75%, transparent) 60deg,
+      transparent 130deg,
+      transparent 230deg,
+      color-mix(in srgb, var(--card-color) 75%, transparent) 300deg,
+      transparent 360deg
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .topic-card::before {
+      animation: spin-angle 9s linear infinite;
+    }
+  }
+
+  .topic-card:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes spin-angle {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 3;
     display: flex;
     flex-direction: column;
+    flex: 1;
     gap: clamp(0.5rem, calc(0.125rem + 1vw), 1rem);
-    border: 1px solid color-mix(in srgb, var(--card-color) 35%, transparent);
-    border-radius: 1rem;
-    background: linear-gradient(
-      145deg,
-      color-mix(in srgb, var(--card-bg) 70%, var(--sl-color-bg)) 0%,
-      color-mix(in srgb, var(--card-bg) 10%, var(--sl-color-bg)) 100%
-    );
-    padding: clamp(1rem, calc(0.125rem + 3vw), 2.5rem);
-    box-shadow:
-      0 1px 0 0 color-mix(in srgb, var(--card-color) 15%, transparent) inset,
-      0 4px 24px -4px color-mix(in srgb, var(--card-color) 10%, transparent);
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease,
-      border-color 0.2s ease;
+    padding: clamp(1.1rem, calc(0.25rem + 2.5vw), 2.25rem);
   }
 
-  .topic-card:nth-child(4n + 1) {
-    --card-color: var(--sl-color-orange);
-    --card-bg: var(--sl-color-orange-low);
-  }
-  .topic-card:nth-child(4n + 2) {
-    --card-color: var(--sl-color-purple);
-    --card-bg: var(--sl-color-purple-low);
-  }
-  .topic-card:nth-child(4n + 3) {
-    --card-color: var(--sl-color-green);
-    --card-bg: var(--sl-color-green-low);
-  }
-  .topic-card:nth-child(4n + 4) {
-    --card-color: var(--sl-color-red);
-    --card-bg: var(--sl-color-red-low);
-  }
-
-  .topic-card:hover {
-    transform: translateY(-4px);
-    border-color: color-mix(in srgb, var(--card-color) 60%, transparent);
-    box-shadow:
-      0 1px 0 0 color-mix(in srgb, var(--card-color) 22%, transparent) inset,
-      0 10px 36px -6px color-mix(in srgb, var(--card-color) 25%, transparent);
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
   }
 
   .icon-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.625rem;
-    border: 1px solid var(--card-color);
-    background-color: var(--card-bg);
-    color: color-mix(in srgb, var(--card-color) 75%, var(--sl-color-gray-3));
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--card-color) 55%, transparent);
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--card-tint) 82%, transparent) 0%,
+      color-mix(in srgb, var(--card-tint) 22%, transparent) 100%
+    );
+    color: var(--card-color);
     flex-shrink: 0;
+    transition:
+      transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
   }
 
-  .card-link {
-    color: inherit;
-    text-decoration: none;
+  .topic-card:hover .icon-wrap {
+    transform: scale(1.06) rotate(-3deg);
+    border-color: var(--card-color);
+    box-shadow: 0 0 28px -4px
+      color-mix(in srgb, var(--card-color) 60%, transparent);
   }
 
-  .card-link::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
+  .card-index {
+    font-family: var(
+      --__sl-font-mono,
+      ui-monospace,
+      "SF Mono",
+      Menlo,
+      monospace
+    );
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1;
+    color: color-mix(in srgb, var(--card-color) 60%, transparent);
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    user-select: none;
+  }
+  .card-index::before {
+    content: counter(topic-card, decimal-leading-zero);
   }
 
   .title {
@@ -153,10 +399,77 @@ const Icon = ICONS[icon];
     color: var(--sl-color-white);
     line-height: var(--sl-line-height-headings);
     margin: 0;
+    letter-spacing: -0.01em;
   }
 
   .body {
     margin: 0;
-    font-size: clamp(var(--sl-text-sm), calc(0.5rem + 1vw), var(--sl-text-body));
+    font-size: clamp(
+      var(--sl-text-sm),
+      calc(0.5rem + 1vw),
+      var(--sl-text-body)
+    );
+    color: color-mix(in srgb, var(--sl-color-gray-2) 92%, transparent);
+  }
+
+  :root[data-theme="light"] .body {
+    color: color-mix(in srgb, var(--sl-color-gray-3) 95%, transparent);
+  }
+
+  .card-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: color-mix(in srgb, var(--card-color) 80%, var(--sl-color-white));
+    opacity: 0.7;
+    transition:
+      opacity 0.35s ease,
+      gap 0.35s ease,
+      color 0.35s ease;
+  }
+  .card-cta svg {
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .topic-card:hover .card-cta {
+    opacity: 1;
+    gap: 0.55rem;
+    color: var(--card-color);
+  }
+  .topic-card:hover .card-cta svg {
+    transform: translateX(4px);
+  }
+
+  .topic-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0 1px 0 0 color-mix(in srgb, var(--card-color) 30%, transparent) inset,
+      0 18px 44px -10px color-mix(in srgb, var(--card-color) 32%, transparent),
+      0 0 0 1px color-mix(in srgb, var(--card-color) 50%, transparent);
+  }
+
+  .card-link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 4;
+  }
+
+  @media (hover: none) {
+    .topic-card::before {
+      animation: none;
+      opacity: 0.55;
+    }
+    .card-motif {
+      opacity: 0.18;
+    }
   }
 </style>

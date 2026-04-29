@@ -1,0 +1,126 @@
+---
+// Animated neural network — nodes pulse, edges fire in sequence
+---
+
+<svg
+  class="motif"
+  viewBox="0 0 240 180"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+>
+  <g class="edges">
+    <line x1="30" y1="40" x2="100" y2="50" />
+    <line x1="30" y1="40" x2="100" y2="100" />
+    <line x1="30" y1="90" x2="100" y2="50" />
+    <line x1="30" y1="90" x2="100" y2="100" />
+    <line x1="30" y1="90" x2="100" y2="140" />
+    <line x1="30" y1="140" x2="100" y2="100" />
+    <line x1="30" y1="140" x2="100" y2="140" />
+    <line x1="100" y1="50" x2="170" y2="70" />
+    <line x1="100" y1="50" x2="170" y2="120" />
+    <line x1="100" y1="100" x2="170" y2="70" />
+    <line x1="100" y1="100" x2="170" y2="120" />
+    <line x1="100" y1="140" x2="170" y2="120" />
+    <line x1="170" y1="70" x2="220" y2="95" />
+    <line x1="170" y1="120" x2="220" y2="95" />
+  </g>
+  <g class="nodes">
+    <circle cx="30" cy="40" r="3" />
+    <circle cx="30" cy="90" r="3" />
+    <circle cx="30" cy="140" r="3" />
+    <circle cx="100" cy="50" r="3.4" />
+    <circle cx="100" cy="100" r="3.4" />
+    <circle cx="100" cy="140" r="3.4" />
+    <circle cx="170" cy="70" r="3.4" />
+    <circle cx="170" cy="120" r="3.4" />
+    <circle cx="220" cy="95" r="4" />
+  </g>
+</svg>
+
+<style>
+  .motif {
+    width: 100%;
+    height: 100%;
+    color: var(--card-color, currentColor);
+    overflow: visible;
+  }
+
+  .edges line {
+    stroke: currentColor;
+    stroke-width: 0.7;
+    stroke-linecap: round;
+    fill: none;
+    stroke-dasharray: 90;
+    stroke-dashoffset: 90;
+    opacity: 0.25;
+  }
+
+  .nodes circle {
+    fill: currentColor;
+    opacity: 0.7;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .edges line {
+      animation: fire 5.4s ease-in-out infinite;
+    }
+    .edges line:nth-child(1) { animation-delay: 0.0s; }
+    .edges line:nth-child(2) { animation-delay: 0.25s; }
+    .edges line:nth-child(3) { animation-delay: 0.5s; }
+    .edges line:nth-child(4) { animation-delay: 0.75s; }
+    .edges line:nth-child(5) { animation-delay: 1.0s; }
+    .edges line:nth-child(6) { animation-delay: 1.25s; }
+    .edges line:nth-child(7) { animation-delay: 1.5s; }
+    .edges line:nth-child(8) { animation-delay: 1.75s; }
+    .edges line:nth-child(9) { animation-delay: 2.0s; }
+    .edges line:nth-child(10) { animation-delay: 2.25s; }
+    .edges line:nth-child(11) { animation-delay: 2.5s; }
+    .edges line:nth-child(12) { animation-delay: 2.75s; }
+    .edges line:nth-child(13) { animation-delay: 3.0s; }
+    .edges line:nth-child(14) { animation-delay: 3.25s; }
+
+    .nodes circle {
+      animation: blink 3s ease-in-out infinite;
+    }
+    .nodes circle:nth-child(1) { animation-delay: 0.1s; }
+    .nodes circle:nth-child(2) { animation-delay: 0.4s; }
+    .nodes circle:nth-child(3) { animation-delay: 0.7s; }
+    .nodes circle:nth-child(4) { animation-delay: 1.0s; }
+    .nodes circle:nth-child(5) { animation-delay: 1.3s; }
+    .nodes circle:nth-child(6) { animation-delay: 1.6s; }
+    .nodes circle:nth-child(7) { animation-delay: 1.9s; }
+    .nodes circle:nth-child(8) { animation-delay: 2.2s; }
+    .nodes circle:nth-child(9) { animation-delay: 2.5s; }
+  }
+
+  @keyframes fire {
+    0%, 80%, 100% {
+      stroke-dashoffset: 90;
+      opacity: 0.18;
+    }
+    18% {
+      stroke-dashoffset: 0;
+      opacity: 0.95;
+    }
+    45% {
+      stroke-dashoffset: -90;
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes blink {
+    0%, 100% {
+      opacity: 0.45;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.4);
+    }
+  }
+
+  .nodes circle {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+</style>
