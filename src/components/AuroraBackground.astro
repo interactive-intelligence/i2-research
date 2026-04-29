@@ -69,7 +69,6 @@ const NOISE = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' v
     border-radius: 50%;
     filter: blur(90px);
     opacity: 0.55;
-    will-change: transform;
     mix-blend-mode: screen;
   }
 
@@ -161,93 +160,4 @@ const NOISE = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' v
     transform-origin: center;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .aurora-blob--1 {
-      animation: drift-1 42s ease-in-out infinite alternate;
-    }
-    .aurora-blob--2 {
-      animation: drift-2 58s ease-in-out infinite alternate;
-    }
-    .aurora-blob--3 {
-      animation: drift-3 71s ease-in-out infinite alternate;
-    }
-    .aurora-stars .star-path-0 {
-      animation:
-        twinkle var(--twinkle-dur, 9s) ease-in-out infinite var(--twinkle-delay, 0s),
-        star-drift-0 var(--drift-dur, 50s) ease-in-out infinite alternate var(--twinkle-delay, 0s);
-    }
-    .aurora-stars .star-path-1 {
-      animation:
-        twinkle var(--twinkle-dur, 11s) ease-in-out infinite var(--twinkle-delay, 0s),
-        star-drift-1 var(--drift-dur, 55s) ease-in-out infinite alternate var(--twinkle-delay, 0s);
-    }
-    .aurora-stars .star-path-2 {
-      animation:
-        twinkle var(--twinkle-dur, 12s) ease-in-out infinite var(--twinkle-delay, 0s),
-        star-drift-2 var(--drift-dur, 60s) ease-in-out infinite var(--twinkle-delay, 0s);
-    }
-    .aurora-stars .star-path-3 {
-      animation:
-        twinkle var(--twinkle-dur, 10s) ease-in-out infinite var(--twinkle-delay, 0s),
-        star-drift-3 var(--drift-dur, 65s) ease-in-out infinite alternate-reverse var(--twinkle-delay, 0s);
-    }
-  }
-
-  @keyframes drift-1 {
-    0%   { transform: translate3d(0, 0, 0) scale(1); }
-    50%  { transform: translate3d(8vmax, 4vmax, 0) scale(1.1); }
-    100% { transform: translate3d(-4vmax, 6vmax, 0) scale(0.95); }
-  }
-
-  @keyframes drift-2 {
-    0%   { transform: translate3d(0, 0, 0) scale(1); }
-    50%  { transform: translate3d(-10vmax, 8vmax, 0) scale(1.15); }
-    100% { transform: translate3d(-2vmax, 14vmax, 0) scale(1); }
-  }
-
-  @keyframes drift-3 {
-    0%   { transform: translate3d(0, 0, 0) scale(0.95); }
-    50%  { transform: translate3d(-6vmax, -8vmax, 0) scale(1.1); }
-    100% { transform: translate3d(4vmax, -2vmax, 0) scale(1); }
-  }
-
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.2; scale: 0.85; }
-    50%      { opacity: 0.95; scale: 1.15; }
-  }
-
-  /* Linear-ish drift across the sky */
-  @keyframes star-drift-0 {
-    0%   { translate: 0 0; }
-    50%  { translate: 2.4px -1.6px; }
-    100% { translate: -1.4px 0.8px; }
-  }
-
-  /* Loose figure-eight feel */
-  @keyframes star-drift-1 {
-    0%   { translate: 0 0; }
-    25%  { translate: -1.8px -1.2px; }
-    50%  { translate: 0.6px -2.2px; }
-    75%  { translate: 1.6px 0.4px; }
-    100% { translate: -0.8px 1.4px; }
-  }
-
-  /* Slow circular orbit (full loop, no alternate) */
-  @keyframes star-drift-2 {
-    0%   { translate: 0 0; }
-    25%  { translate: 1.6px -1.0px; }
-    50%  { translate: 0 -2.0px; }
-    75%  { translate: -1.6px -1.0px; }
-    100% { translate: 0 0; }
-  }
-
-  /* Zigzag */
-  @keyframes star-drift-3 {
-    0%   { translate: 0 0; }
-    20%  { translate: 1.2px 0.8px; }
-    40%  { translate: -0.8px 1.6px; }
-    60%  { translate: -1.6px -0.6px; }
-    80%  { translate: 0.4px -1.4px; }
-    100% { translate: 1.0px 0.6px; }
-  }
 </style>

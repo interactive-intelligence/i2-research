@@ -105,9 +105,11 @@
   @media (prefers-reduced-motion: no-preference) {
     .stars-far circle {
       animation: twinkle 3.6s ease-in-out infinite;
+      animation-play-state: var(--motif-play, paused);
     }
     .stars-near circle {
       animation: twinkle 2.8s ease-in-out infinite;
+      animation-play-state: var(--motif-play, paused);
     }
     .stars-far circle:nth-child(odd) { animation-delay: 0.6s; }
     .stars-far circle:nth-child(3n) { animation-delay: 1.4s; }
@@ -116,18 +118,21 @@
 
     .rocket {
       animation: rocket-drift 5s ease-in-out infinite;
+      animation-play-state: var(--motif-play, paused);
       transform-box: fill-box;
       transform-origin: center;
     }
 
     .trail line {
       animation: trail-flow 1.6s linear infinite;
+      animation-play-state: var(--motif-play, paused);
     }
     .trail line:nth-child(2) { animation-delay: 0.3s; }
     .trail line:nth-child(3) { animation-delay: 0.6s; }
 
     .rocket .flame {
       animation: flame-flicker 0.4s ease-in-out infinite alternate;
+      animation-play-state: var(--motif-play, paused);
       transform-box: fill-box;
       transform-origin: center top;
     }

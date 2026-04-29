@@ -164,26 +164,6 @@ if (image) {
       filter: blur(30px);
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      .logo-halo-ring {
-        animation: halo-spin 18s linear infinite;
-      }
-      .logo-inner {
-        animation: logo-float 7s ease-in-out infinite;
-      }
-    }
-
-    @keyframes halo-spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes logo-float {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-8px); }
-    }
-
     .stack {
       flex-direction: column;
       gap: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);

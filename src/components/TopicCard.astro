@@ -159,6 +159,7 @@ const Motif = motif ? MOTIFS[motif] : null;
     );
     --mx: 50%;
     --my: 50%;
+    --motif-play: paused;
 
     counter-increment: topic-card;
     position: relative;
@@ -314,6 +315,10 @@ const Motif = motif ? MOTIFS[motif] : null;
   @media (prefers-reduced-motion: no-preference) {
     .topic-card::before {
       animation: spin-angle 9s linear infinite;
+      animation-play-state: var(--motif-play);
+    }
+    .topic-card:hover {
+      --motif-play: running;
     }
   }
 
@@ -464,6 +469,9 @@ const Motif = motif ? MOTIFS[motif] : null;
   }
 
   @media (hover: none) {
+    .topic-card {
+      --motif-play: paused;
+    }
     .topic-card::before {
       animation: none;
       opacity: 0.55;

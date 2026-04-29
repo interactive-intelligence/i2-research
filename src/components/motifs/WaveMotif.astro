@@ -80,10 +80,12 @@
   @media (prefers-reduced-motion: no-preference) {
     .scanner line {
       animation: scan 5s ease-in-out infinite;
+      animation-play-state: var(--motif-play, paused);
     }
 
     .tokens rect {
       animation: token-flash 5s ease-in-out infinite;
+      animation-play-state: var(--motif-play, paused);
       transform-box: fill-box;
       transform-origin: center;
     }
@@ -96,6 +98,7 @@
 
     .sine {
       animation: sine-shimmer 5s ease-in-out infinite;
+      animation-play-state: var(--motif-play, paused);
     }
   }
 
