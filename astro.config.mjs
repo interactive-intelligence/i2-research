@@ -27,6 +27,14 @@ export default defineConfig({
       customCss: ["./src/styles/custom.css", "katex/dist/katex.min.css"],
       sidebar: [
         {
+          label: "Research Room",
+          items: [
+            { slug: "research-room" },
+            { slug: "research-room/curriculum" },
+            { slug: "research-room/apply" },
+          ],
+        },
+        {
           label: "Getting Started",
           items: [
             { slug: "getting-started/introduction" },

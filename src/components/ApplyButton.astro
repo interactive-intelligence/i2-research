@@ -1,0 +1,53 @@
+---
+import LinkButton from "../../node_modules/@astrojs/starlight/user-components/LinkButton.astro";
+import { APPLY_URL, OPENS_LABEL } from "../config/research-room";
+
+interface Props {
+  text?: string;
+}
+
+const { text = "Apply to Research Room" } = Astro.props;
+---
+
+<div class="apply-cta not-content">
+  {
+    APPLY_URL ? (
+      <LinkButton href={APPLY_URL} icon="external">
+        {text}
+      </LinkButton>
+    ) : (
+      <span class="apply-pending" aria-disabled="true">
+        {OPENS_LABEL}
+      </span>
+    )
+  }
+</div>
+
+<style>
+  .apply-cta {
+    margin-block: 1.5rem;
+  }
+
+  .apply-cta :global(a) {
+    box-shadow: 0 8px 28px -8px rgba(204, 136, 255, 0.55),
+      0 0 0 1px rgba(204, 136, 255, 0.25) inset;
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+      box-shadow 0.35s ease;
+  }
+
+  .apply-cta :global(a:hover) {
+    transform: translateY(-2px);
+  }
+
+  .apply-pending {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    border-radius: 999rem;
+    border: 1px dashed var(--sl-color-accent);
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+    font-weight: 600;
+    cursor: not-allowed;
+  }
+</style>

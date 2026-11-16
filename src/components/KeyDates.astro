@@ -1,0 +1,49 @@
+---
+import { KEY_DATES } from "../config/research-room";
+---
+
+<ol class="key-dates not-content">
+  {
+    KEY_DATES.map(({ date, label }) => (
+      <li>
+        <span class="kd-date">{date}</span>
+        <span class="kd-label">{label}</span>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .key-dates {
+    list-style: none;
+    padding: 0;
+    margin-block: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  }
+
+  .key-dates li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-inline-start: 3px solid var(--sl-color-accent);
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--sl-color-accent-low) 35%, transparent);
+  }
+
+  .kd-date {
+    font-family: var(--__sl-font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sl-color-accent);
+  }
+
+  .kd-label {
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+</style>

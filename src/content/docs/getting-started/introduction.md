@@ -5,6 +5,8 @@ description: Learn about Interactive Intelligence (I2) and what this research gu
 
 Welcome to the **I2 Research Guide**, a resource created by [Interactive Intelligence](https://uw-i2.org) (I2) to help researchers, students, and practitioners navigate the rapidly evolving landscape of artificial intelligence, machine learning, and neuroscience.
 
+> **Looking for Research Room?** See [What is Research Room?](/research-room/) for the program, curriculum, and how to apply.
+
 ## What is I2?
 
 Interactive Intelligence (I2) is a research organization dedicated to advancing the understanding of intelligent systems — both biological and artificial. Our work spans foundational theory, applied methods, and interdisciplinary research at the intersection of computer science and neuroscience.

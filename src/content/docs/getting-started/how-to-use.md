@@ -9,10 +9,11 @@ This guide is designed to be read both linearly and as a reference. Here are som
 
 Use the **sidebar** on the left to browse topics by category. Each section is organized from foundational concepts to more advanced topics:
 
-1. **Getting Started** — You are here. Orientation and overview.
-2. **Artificial Intelligence** — Start with Transformers, then move to Large Language Models, Neural Networks, Deep Reinforcement Learning, and Prompt Engineering.
-3. **Neuroscience** — Start with Computational Neuroscience, then Neural Coding, and finally Neuroplasticity.
-4. **AI × Neuroscience** — Explore Brain-Computer Interfaces, Neuro-Inspired AI, and Neuromorphic Computing — where biology and computation converge.
+1. **Research Room**: I2's guided research program: overview, curriculum, and how to apply.
+2. **Getting Started** — You are here. Orientation and overview.
+3. **Artificial Intelligence** — Start with Transformers, then move to Large Language Models, Neural Networks, Deep Reinforcement Learning, and Prompt Engineering.
+4. **Neuroscience** — Start with Computational Neuroscience, then Neural Coding, and finally Neuroplasticity.
+5. **AI × Neuroscience** — Explore Brain-Computer Interfaces, Neuro-Inspired AI, and Neuromorphic Computing — where biology and computation converge.
 
 ## Reading Order
 

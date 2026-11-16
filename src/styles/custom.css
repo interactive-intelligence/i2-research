@@ -280,3 +280,25 @@ header.header {
   border-color: var(--sl-color-gray-3);
 }
 
+
+/* ─── Research Room intro on the homepage ─── */
+.rr-intro {
+  max-width: 48rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.rr-intro .key-dates {
+  text-align: start;
+}
+
+/* Banner (homepage announcement) */
+.sl-banner {
+  background: linear-gradient(90deg, var(--sl-color-accent-low), var(--sl-color-bg-nav));
+  color: var(--sl-color-white);
+}
+
+.sl-banner a {
+  color: var(--sl-color-accent);
+  font-weight: 600;
+}

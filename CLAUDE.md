@@ -24,6 +24,7 @@ No lint or test scripts are configured — the project uses Prettier for formatt
 All documentation lives in `src/content/docs/` as Markdown/MDX files. Starlight auto-generates sidebar navigation from the directory structure. Frontmatter fields (`title`, `description`, `draft`) drive sidebar labels and metadata.
 
 Sections:
+- `research-room/`: I2 Research Room program pages (overview, curriculum, apply); explicit sidebar items
 - `getting-started/` — explicit sidebar items (configured in `astro.config.mjs`)
 - `ai/`, `neuroscience/`, `intersection/` — auto-generated sidebar groups
 
@@ -33,13 +34,20 @@ KaTeX math rendering is enabled via `remark-math` + `rehype-katex`. Use `$...$` 
 
 Located in `src/components/`:
 - **Hero.astro** — overrides Starlight's default homepage hero (registered in `astro.config.mjs` under `components`)
-- **FlowchartDiagram.astro** — animated SVG flowchart used on the homepage; collapses to single-column on mobile
+- **AuroraBackground.astro**: animated background behind the homepage hero
+- **ApplyButton.astro**: Research Room apply button; shows a disabled "opens" pill while `APPLY_URL` is empty
+- **KeyDates.astro**: Research Room key-dates cards
+- `motifs/`: decorative SVGs used by TopicCard (`network`, `synapse`, `wave`, `rocket`)
 - **TopicCard.astro** — card with icon, color rotation (orange/purple/green/red), hover lift
 - **UrlBadge.astro** — inline URL citation badge
 
 ### Styling
 
 `src/styles/custom.css` defines the full theme using Starlight CSS custom properties. Accent color is `#cc88ff` (dark) / `#744bc5` (light). Animations include border spin, entrance fade, icon bounce, and arrow flow.
+
+### Research Room config
+
+`src/config/research-room.ts` holds the application form URL (`APPLY_URL`, must be the public `/viewform` link) and key dates. Edit there, not in individual pages.
 
 ### Configuration
 
